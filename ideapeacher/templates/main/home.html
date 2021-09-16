@@ -1,0 +1,52 @@
+
+{% extends "main/header.html" %}
+
+{% block content %}
+
+{% if ideas %}
+
+{% for i in ideas %}
+<p>User: {{i.peacher.user}}</p>
+<p>{{i.date_created}}</p>
+
+{% for c in i.category.all %}
+	{{c.category}}
+
+	<div>
+		
+		<a href="{% url 'ideapeacher:edit_idea' i.pk %}">Edit</a>
+		<a href="{% url 'ideapeacher:deleteidea' i.pk %}">Delete</a>
+	</div>
+
+	<p>{{i.post_idea}}</p>
+	
+<div>Comments:</div>
+
+{% for b in comments %}
+{% ifequal i.id b.on_post.id %}
+
+<p>{{b.by}}: {{b.comment}}</p>
+
+{% endifequal %}
+{% endfor %}
+
+<!-- make a comment box -->
+<form method="POST" action="{% url 'ideapeacher:comment' i.pk  %}"> 
+	{%csrf_token%}
+
+	<textarea class="form-control" aria_label="With textarea" name="comment" placeholder="Enter comment here"></textarea>
+
+	<button type="submit" id="commentbtn" class="btn">Comment</button>
+
+</form>
+
+
+
+
+{% endfor %}
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

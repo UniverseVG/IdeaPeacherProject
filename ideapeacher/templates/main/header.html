@@ -1,0 +1,41 @@
+<head>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+
+</head>
+
+<body>
+	<!--nav bar -->
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">IdeaPeacher.com</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      
+        {% if user.is_authenticated %}
+        <li> Logged in as {{ user.username|title }}</li>
+        <li><a href="/logout_request">Logout</a></li>
+        {% else %}
+        <li><a href="/login_request">Login</a></li>
+        <li><a href="/peacher">Register</a></li>
+        {% endif %}
+        <li><a href="/idea">Post</a></li>
+      </ul>
+    </div>
+  </nav>
+        
+
+<div class="container" id="frontend">
+	
+	{% block content %}
+
+	{% endblock %}
+</div>
+
+
+</body>

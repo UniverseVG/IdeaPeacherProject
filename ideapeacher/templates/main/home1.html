@@ -1,0 +1,20 @@
+{% extends "main/header.html" %}
+{% block content %}
+{% if ideas %}
+
+{% for i in ideas %}
+<p>User: {{i.peacher.user}}</p>
+<p>{{i.date_created}}</p>
+
+{% for c in i.category.all %}
+	{{c.category}}
+
+	<p>{{i.post_idea}}</p>
+	
+
+{% endfor %}
+
+{% endfor %}
+
+{% endif %}
+{% endblock %}

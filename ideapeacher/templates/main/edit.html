@@ -1,0 +1,12 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+<form method="post" action="{% url 'ideapeacher:updateidea' share.pk %}">
+	{% csrf_token %}
+	<textarea class="form-control" aria-label="With textarea" name="idea">{{share.post_idea}}</textarea>
+
+	<button type="submit" class="btn btn-success">Update</button>
+
+</form>
+{% endblock %}
